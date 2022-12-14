@@ -1,6 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/controller/user_controller.dart';
+import 'package:flutter_blog/domain/user/user_repository.dart';
 
 import 'package:flutter_blog/util/validator_util.dart';
 import 'package:flutter_blog/view/pages/user/login_page.dart';
@@ -11,8 +13,12 @@ import '../../components/custom_elevated_button.dart';
 import '../../components/custom_text_form_field.dart';
 
 class JoinPage extends StatelessWidget {
+UserRepository s = UserRepository();
 
   final _formkey = GlobalKey<FormState>();
+
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +45,13 @@ class JoinPage extends StatelessWidget {
       child: Column(
         children: [
               CustomTextFormField(
+                controller: _username,
                 hint: "Username",
                 funValidator: validateUsername(),
+
               ),
               CustomTextFormField(
+                controller: _password,
                   hint: "Password",
                   funValidator: validatePassword(),
               ),
@@ -50,7 +59,9 @@ class JoinPage extends StatelessWidget {
                 text: "회원가입",
                 funPageRoute: () {
                   if(_formkey.currentState!.validate()) {
-                    Get.to(LoginPage());
+                    s.signIn(_username.text.trim(), _password.text.trim());
+                    //_formkey.currentState!.save();
+
                   }
                 },
               ),

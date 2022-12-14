@@ -21,14 +21,18 @@ class UserRepository {
 
   Future<void> signIn(String username, String password) async {
     SignInReqDto signInReqDto = SignInReqDto(username, password);
+    Response response = await _userProvider.signIn(signInReqDto.toJson());
 
-    print("================");
-    print(signInReqDto.toJson());
-    Response response = await _userProvider.login(signInReqDto.toJson());
+    //dynamic headers = response.headers;
+   // String token = headers["application/json"];
     print("================");
     print(response.body);
     print("================");
     print(response.headers);
+    print(signInReqDto.toJson());
+    //return token;
+
+
   }
 
 }
