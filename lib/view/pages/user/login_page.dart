@@ -12,8 +12,14 @@ import '../../components/custom_elevated_button.dart';
 import '../../components/custom_text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
+  UserRepository s = UserRepository();
 
   final _formkey = GlobalKey<FormState>();
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +52,12 @@ class LoginPage extends StatelessWidget {
       child: Column(
         children: [
           CustomTextFormField(
+              controller: _username,
               hint: "Username",
               funValidator: validateUsername(),
           ),
           CustomTextFormField(
+              controller: _password,
               hint: "Password",
               funValidator: validatePassword(),
           ),
@@ -57,9 +65,8 @@ class LoginPage extends StatelessWidget {
               text: "로그인",
             funPageRoute: () {
                 if(_formkey.currentState!.validate()){
-                 // Get.to(HomePage());
-                  UserRepository u = UserRepository();
-                  u.login("ssar", "1234");
+                 //Get.to(HomePage());
+                  s.login(_username.text.trim(), _password.text.trim());
 
                 }
             },

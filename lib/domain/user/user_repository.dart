@@ -7,6 +7,20 @@ import '../../controller/dto/SignInReqDto.dart';
 class UserRepository {
   final UserProvider _userProvider = UserProvider();
 
+  Future<void> signIn(String username, String password) async {
+    SignInReqDto signInReqDto = SignInReqDto(username, password);
+    Response response = await _userProvider.signIn(signInReqDto.toJson());
+
+    //dynamic headers = response.headers;
+    // String token = headers["application/json"];
+    print("================");
+    print(response.body);
+    print("================");
+    print(response.headers);
+    print(signInReqDto.toJson());
+    //return token;
+  }
+
   Future<void> login(String username, String password) async {
     LoginReqDto loginReqDto = LoginReqDto(username, password);
 
@@ -18,21 +32,4 @@ class UserRepository {
     print("================");
     print(response.headers);
   }
-
-  Future<void> signIn(String username, String password) async {
-    SignInReqDto signInReqDto = SignInReqDto(username, password);
-    Response response = await _userProvider.signIn(signInReqDto.toJson());
-
-    //dynamic headers = response.headers;
-   // String token = headers["application/json"];
-    print("================");
-    print(response.body);
-    print("================");
-    print(response.headers);
-    print(signInReqDto.toJson());
-    //return token;
-
-
-  }
-
 }

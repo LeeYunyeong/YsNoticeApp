@@ -61,18 +61,19 @@ UserRepository s = UserRepository();
                   if(_formkey.currentState!.validate()) {
                     s.signIn(_username.text.trim(), _password.text.trim());
                     //_formkey.currentState!.save();
+                    Get.to(() => LoginPage());
 
                   }
                 },
               ),
           TextButton(
             onPressed: () {
-              Get.to(LoginPage());
+              Get.to(() => LoginPage());
             },
             child: Text("로그인 페이지로 이동"),)
             ],
           ),
-          );
+    );
   }
 }
 
