@@ -4,8 +4,9 @@ class CustomTextArea extends StatelessWidget {
   final String hint;
   final funValidator;
   final String? value;
+  final controller;
 
-  const CustomTextArea({required this.hint, required this.funValidator, this.value});
+  const CustomTextArea({required this.hint, required this.funValidator, this.value, this.controller});
 
   @override
   Widget build(BuildContext context) {

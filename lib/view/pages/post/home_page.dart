@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/domain/user/user_repository.dart';
 import 'package:flutter_blog/size.dart';
 import 'package:flutter_blog/view/pages/post/detail_page.dart';
 import 'package:flutter_blog/view/pages/post/write_page.dart';
@@ -7,9 +8,14 @@ import 'package:flutter_blog/view/pages/user/user_info.dart';
 
 import 'package:get/get.dart';
 
+import '../user/join_page.dart';
+
 
 
 class HomePage extends StatelessWidget {
+
+  UserRepository s = UserRepository();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +77,9 @@ class HomePage extends StatelessWidget {
               Divider(),
               TextButton(
                 onPressed: () {
+
                 Get.to(LoginPage());
+
               },
                 child: Text(
                   "로그아웃",
@@ -83,6 +91,21 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Divider(),
+              TextButton(
+                onPressed: () {
+                  s.dropUser("username");
+                  Get.to(() => JoinPage());
+
+                },
+                child: Text(
+                  "회원탈퇴",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

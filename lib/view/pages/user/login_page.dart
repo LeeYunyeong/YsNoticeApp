@@ -67,8 +67,8 @@ class LoginPage extends StatelessWidget {
                 if(_formkey.currentState!.validate()){
                  //Get.to(HomePage());
                   s.login(_username.text.trim(), _password.text.trim());
-
                 }
+
             },
           ),
           TextButton(

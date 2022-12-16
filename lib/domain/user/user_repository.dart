@@ -1,5 +1,7 @@
+import 'package:flutter_blog/controller/dto/DropUserReqDto.dart';
 import 'package:flutter_blog/controller/dto/LoginReqDto.dart';
 import 'package:flutter_blog/domain/user/user_provider.dart';
+import 'package:flutter_blog/view/pages/post/home_page.dart';
 import 'package:get/get.dart';
 
 import '../../controller/dto/SignInReqDto.dart';
@@ -31,5 +33,20 @@ class UserRepository {
     print(response.body);
     print("================");
     print(response.headers);
+
+    if(response.body == username){
+      Get.to(()=>HomePage());
+    }else{
+      Get.snackbar("알림", "아이디와 비밀번호를 확인하세요");
+    }
   }
+
+  Future<void> dropUser(String username) async {
+    DropUserReqDto dropUserReqDto = DropUserReqDto(username);
+    Response response = await _userProvider.dropUser(dropUserReqDto.toDrop());
+
+    print(response.body);
+  }
+
+
 }

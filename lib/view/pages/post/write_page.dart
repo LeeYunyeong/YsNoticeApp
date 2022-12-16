@@ -9,6 +9,8 @@ import '../../components/custom_elevated_button.dart';
 import 'home_page.dart';
 
 class WritePage extends StatelessWidget {
+  final TextEditingController _title = TextEditingController();
+  final TextEditingController _content = TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
 
@@ -23,10 +25,12 @@ class WritePage extends StatelessWidget {
         child: ListView(
         children: [
           CustomTextFormField(
+            controller: _title,
             hint: "Title",
             funValidator: validateTitle(),
           ),
           CustomTextArea(
+            controller: _content,
             hint: "content",
             funValidator: validateContent(),
           ),
